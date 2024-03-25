@@ -21,7 +21,7 @@
             <span class="block text-sm font-medium text-black "
               >{{ Auth::user()->name }}</span
             >
-            <span class="block text-xs font-medium">{{ 'nombre del rol' }}</span>
+            <span class="block text-xs font-medium">{{ Auth::user()->roles->pluck('name')[0] ?? '' }}</span>
           </span>
           <i class="fa-solid fa-chevron-down fill-current sm:block" 
               x-bind:class="dropdownOpen && 'rotate-180'"></i>
