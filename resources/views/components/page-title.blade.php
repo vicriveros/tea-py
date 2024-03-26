@@ -1,5 +1,5 @@
     <!-- Breadcrumb Start -->
-    <div class="py-8 sm:px-6 lg:px-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between" >
+    <div class="pt-1.5 pb-8 lg:px-1.5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between" >
         <h2 class="text-title-lg font-bold text-black">
             {{ $title }}
         </h2>

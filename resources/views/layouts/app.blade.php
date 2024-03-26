@@ -28,7 +28,7 @@
                 <livewire:header />
 
                 <!-- Page Content -->
-                <main>
+                <main class="p-6.5">
                     {{ $slot }}
                 </main>
             </div>

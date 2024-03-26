@@ -5,7 +5,7 @@
         </x-slot>
     </x-page-title>
 
-    <div class="grid grid-cols-1 gap-9 sm:grid-cols-2 mx-3 mb-4">
+    <div class="grid grid-cols-1 gap-9 sm:grid-cols-2 ">
         @if (Laravel\Fortify\Features::canUpdateProfileInformation())
             @livewire('profile.update-profile-information-form')
         @endif
