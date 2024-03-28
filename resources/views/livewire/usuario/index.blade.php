@@ -15,7 +15,7 @@
                     <x-th text="Nombre" />
                     <x-th text="Email" />
                     <x-th text="Rol" />
-                    <x-th text="Acciones" />
+                    <x-th text="Editar" />
                 </tr>
             </thead>
 
@@ -25,9 +25,10 @@
                         <x-td> {{ $usuario->name }} </x-td>
                         <x-td> {{ $usuario->email }} </x-td>
                         <x-td> {{ $usuario->roles->pluck('name')[0] ?? '' }} </x-td>
-                        <x-td> 
-                            <i class="fa-solid fa-pen-to-square text-xl mx-2 text-amber-500"></i>
-                            <i class="fa-solid fa-trash text-xl mx-2 text-red-600"></i>
+                        <x-td>
+                            <a href="{{ route('usuario.edit', $usuario->id) }}"> 
+                                <i class="fa-solid fa-pen-to-square text-xl mx-2 text-primary"></i>
+                            </a>
                         </x-td>                        
                     </tr>
                 @endforeach

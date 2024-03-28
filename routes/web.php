@@ -16,10 +16,12 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('usuario/lista', \App\Livewire\Usuario\Index::class);
+Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified',])
+    ->group(function () {
+        Route::get('usuario/lista', \App\Livewire\Usuario\Index::class)->name('usuarios');
+});
+
+Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified',])
+    ->group(function () {
+        Route::get('usuario/{id}/edit', \App\Livewire\Usuario\Edit::class)->name('usuario.edit');
 });
