@@ -45,10 +45,14 @@
             <x-message> {{ 'Registro Actualizado!' }}  </x-message>
 
 
-            <div class="flex justify-end">
+            <div class="flex justify-end gap-4">
                 <x-button type="submit" >
                     {{ 'Guardar' }}
-                </x-button>
+                </x-button>    
+                <x-danger-button wire:click="delete({{ $id }})" wire:confirm="Seguro que desea eliminar este usario?">
+                    {{ 'Eliminar' }}
+                </x-danger-button>
+            
             </div>
 
         </div>

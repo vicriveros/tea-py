@@ -16,6 +16,7 @@ class Edit extends Component
     public $username = '';
     #[Validate]
     public $email ='';
+    public $id ='';
     public $user_rol ='';
 
     public $message = false;
@@ -24,6 +25,7 @@ class Edit extends Component
     public function mount($id){
         $this->user = User::find($id);
 
+        $this->id = $id;
         $this->username = $this->user->name;
         $this->email = $this->user->email;
         $this->user_rol = $this->user->roles->pluck('name')[0] ?? '';
@@ -46,6 +48,10 @@ class Edit extends Component
         $this->user->save();
         sleep(1);
         $this->message = true;
+    }
+
+    public function delete(User $user){
+        $user->delete();
     }
 
     public function render()
