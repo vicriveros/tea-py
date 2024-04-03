@@ -26,16 +26,18 @@
                         <x-td> {{ $usuario->email }} </x-td>
                         <x-td> {{ $usuario->roles->pluck('name')[0] ?? '' }} </x-td>
                         <x-td>
-                            <a href="{{ route('usuario.edit', $usuario->id) }}"> 
-                                <i class="fa-solid fa-pen-to-square text-xl mx-2 text-primary"></i>
-                            </a>
+                            @can('manejar usuarios')
+                                <a href="{{ route('usuario.edit', $usuario->id) }}"> 
+                                    <i class="fa-solid fa-pen-to-square text-xl mx-2 text-primary"></i>
+                                </a>
+                            @endcan
                         </x-td>                        
                     </tr>
                 @endforeach
             </tbody>
 
         </x-table>
-
+        {{ $usuarios->links() }}
     </x-content-section>
 
 </div>

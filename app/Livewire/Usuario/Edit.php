@@ -52,6 +52,7 @@ class Edit extends Component
 
     public function delete(User $user){
         $user->delete();
+        $this->redirect('/usuario/lista');
     }
 
     public function render()
