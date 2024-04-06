@@ -4,9 +4,17 @@
 >
   <!-- SIDEBAR HEADER -->
   <div class="flex items-center px-12 py-2">
-    <a href="index.html" class="items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark">
+    <a href="{{ route('dashboard') }}" class="items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark">
       <img src="https://asoteapy.org.py/wp-content/uploads/2023/08/logo-grande.png" alt="Logo TeaPy">
     </a>
+
+    <button
+      class="block lg:hidden"
+      @click.stop="sidebarToggle = !sidebarToggle"
+    >
+      <i class="fa-solid fa-arrow-left-long fill-current text-xl text-bodydark1"></i>
+      
+    </button>
   </div>
   <!-- SIDEBAR HEADER -->
 
@@ -27,8 +35,8 @@
           <!-- Menu Item Calendar -->
           <li>
             <a
-              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark "
-              href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" >
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark {{ Request::routeIs('dashboard') ? 'bg-graydark' : '' }}"
+              href="{{ route('dashboard') }}" >
               <i class="fa-solid fa-grip fill-current"></i>
               Dashboard
             </a>
@@ -38,10 +46,10 @@
           <!-- Menu Item Profile -->
           <li>
             <a
-              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark "
-              href="profile.html" >
-            <i class="fa-solid fa-gear fill-current"></i>
-            Item 2
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark {{ Request::routeIs('pacientes') ? 'bg-graydark' : '' }}"
+              href="#" >
+              <i class="fa-solid fa-people-line fill-current"></i>
+              Pacientes
             </a>
           </li>
           <!-- Menu Item Profile -->
@@ -56,14 +64,14 @@
             Configuraciones
               
               <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 fill-current" 
-              x-bind:class="{ 'rotate-180': (selected === 'Dashboard') }"></i>
+              x-bind:class="{ 'rotate-180': (selected === 'Configuraciones') }"></i>
             </a>
 
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden"  x-bind:class="(selected === 'Configuraciones') ? 'block' :'hidden'">
               <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+                  <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('usuarios') ? 'bg-graydark' : '' }}"
                   href="{{ route('usuarios') }}">
                         Usuarios
                   </a>

@@ -18,7 +18,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased relative z-1 bg-whiten font-satoshi text-base font-normal text-body">
+    <body x-data="{ page: 'dashboard', 'sidebarToggle': false, 'scrollTop': false }" class="font-sans antialiased relative z-1 bg-whiten font-satoshi text-base font-normal text-body">
         <!-- <x-banner /> -->
 
         <div class="flex h-screen overflow-hidden">
