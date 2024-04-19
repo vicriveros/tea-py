@@ -12,10 +12,14 @@
         <x-table>
             <thead>
                 <tr>
-                    <x-th text="Nombre" />
-                    <x-th text="Email" />
-                    <x-th text="Rol" />
-                    <x-th text="Editar" />
+                    <x-th sortable="true" column="name" :sortCol="$sortCol" :sortAsc="$sortAsc">
+                        Nombre
+                    </x-th>
+                    <x-th sortable="true" column="email" :sortCol="$sortCol" :sortAsc="$sortAsc">
+                        Email
+                    </x-th>
+                    <x-th> Rol </x-th>
+                    <x-th> Editar </x-th>
                 </tr>
             </thead>
 
@@ -24,7 +28,7 @@
                     <tr wire:key="{{ $usuario->id }}">
                         <x-td> {{ $usuario->name }} </x-td>
                         <x-td> {{ $usuario->email }} </x-td>
-                        <x-td> {{ $usuario->roles->pluck('name')[0] ?? '' }} </x-td>
+                        <x-td> {{ App\Livewire\Usuario\Index::getUserRole($usuario->id) }} </x-td>
                         <x-td>
                             @can('manejar usuarios')
                                 <a href="{{ route('usuario.edit', $usuario->id) }}"> 
