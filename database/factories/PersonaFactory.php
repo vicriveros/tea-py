@@ -20,14 +20,17 @@ class PersonaFactory extends Factory
         return [
             'nombre' => $this->faker->name(),
             'apellido' => $this->faker->lastName(),
-            'documento' => $this->faker->unique()->randomNumber(8),
-            'telefono' => $this->faker->unique()->randomNumber(8),
-            'email' => $this->faker->unique()->safeEmail(),
-            'domicilio' => $this->faker->address(),
             'fecha_nacimiento'=> $this->faker->date(),
+            'direccion' => $this->faker->address(),
+            'documento' => $this->faker->unique()->randomNumber(8),
+            'celular' => $this->faker->unique()->randomNumber(8),
+            'telefono' => $this->faker->unique()->randomNumber(8),
+            'barrio' => $this->faker->address(),
+            'mail' => $this->faker->unique()->safeEmail(),
             'created_at' => now(),
             'updated_at' => now(),
-
+            'estado' => 1,
+            'activo' => 1,
         ];
     }
 }

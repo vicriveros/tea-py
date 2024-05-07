@@ -46,8 +46,8 @@
           <!-- Menu Item Profile -->
           <li>
             <a
-              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark {{ Request::routeIs('pacientes') ? 'bg-graydark' : '' }}"
-              href="#" >
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark {{ Request::routeIs('personas') ? 'bg-graydark' : '' }}"
+              href="{{ route('personas') }}" >
               <i class="fa-solid fa-people-line fill-current"></i>
               Pacientes
             </a>
