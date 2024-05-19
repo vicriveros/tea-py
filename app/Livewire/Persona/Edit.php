@@ -12,25 +12,33 @@ class Edit extends Component
     // Publicar variables a ser usadas en el form
     public Persona $persona;
 
-    #[Validate] // Agrega validacion al input. Corre lo que esta en la funcion rules, for realtime validation
     public $nombre = '';
-    #[Validate]
     public $apellido ='';
-    #[Validate]
     public $documento ='';
+    public $fecha_nacimiento ='';
+    public $direccion ='';
+    public $barrio ='';
+    public $telefono ='';
+    public $mail ='';
     public $id ='';
 
 
     public $message = false;
 
     // Asignar valor a las variables
-    public function mount($id){
-        $this->persona = Persona::find($id);
+    public function mount(Persona $persona){
+        $this->persona = $persona;
 
-        $this->id = $id;
+        $this->id = $this->persona->id;
         $this->nombre = $this->persona->nombre;
         $this->apellido = $this->persona->apellido;
         $this->documento = $this->persona->documento;
+        $this->fecha_nacimiento = $this->persona->fecha_nacimiento;
+        $this->direccion = $this->persona->direccion;
+        $this->barrio = $this->persona->barrio;
+        $this->telefono = $this->persona->telefono;
+        $this->mail = $this->persona->mail;
+        
     }
 
     public function rules(){
@@ -38,6 +46,9 @@ class Edit extends Component
             'nombre' => ['required'],
             'apellido' => ['required'],
             'documento' => ['required'],
+            'fecha_nacimiento' => ['required'],
+            'telefono' => ['required'],
+            'mail' => ['required'],
         ];
     }
 
@@ -47,6 +58,11 @@ class Edit extends Component
         $this->persona->nombre = $this->nombre;
         $this->persona->apellido = $this->apellido;
         $this->persona->documento = $this->documento;
+        $this->persona->fecha_nacimiento = $this->fecha_nacimiento;
+        $this->persona->direccion = $this->direccion;
+        $this->persona->barrio = $this->barrio;
+        $this->persona->telefono = $this->telefono;
+        $this->persona->mail = $this->mail;
 
         $this->persona->save();
 
@@ -61,6 +77,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.persona.edit', ['roles' => Role::all()]);
+        return view('livewire.persona.edit');
     }
 }

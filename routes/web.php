@@ -26,6 +26,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified',])
     ->group(function () {
         Route::get('persona/lista', \App\Livewire\Persona\Index::class)->name('personas');
-        Route::get('persona/{id}/edit', \App\Livewire\Persona\Edit::class)->name('persona.edit');
+        Route::get('persona/{persona}/edit', \App\Livewire\Persona\Edit::class)->name('persona.edit');
+        Route::get('persona/create', \App\Livewire\Persona\Edit::class)->name('persona.create');
 
 });
