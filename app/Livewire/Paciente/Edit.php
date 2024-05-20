@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Livewire\Persona;
+namespace App\Livewire\Paciente;
 
+use App\Models\Paciente;
 use App\Models\Persona;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    // Publicar variables a ser usadas en el form
+
+    public Paciente $paciente;
     public Persona $persona;
 
     public $nombre = '';
@@ -18,16 +20,29 @@ class Edit extends Component
     public $barrio ='';
     public $telefono ='';
     public $mail ='';
-    public $id ='';
+    public $persona_id ='';
 
+    public $colegio ='';
+    public $grado ='';
+    public $diag_nombres ='';
+    public $diag_edad ='';
+    public $diag_responsable ='';
+    public $diag_datos ='';
+    public $centro_programa ='';
 
     public $message = false;
 
-    // Asignar valor a las variables
-    public function mount(Persona $persona){
-        $this->persona = $persona;
+    public function mount(Paciente $paciente){
+        $this->paciente = $paciente;
+        $this->colegio = $this->paciente->colegio;
+        $this->grado = $this->paciente->grado;
+        $this->diag_nombres = $this->paciente->diag_nombres;
+        $this->diag_edad = $this->paciente->diag_edad;
+        $this->diag_responsable = $this->paciente->diag_responsable;
+        $this->diag_datos = $this->paciente->diag_datos;
+        $this->centro_programa = $this->paciente->centro_programa;
 
-        $this->id = $this->persona->id;
+        $this->persona = Persona::find($this->paciente->persona_id);
         $this->nombre = $this->persona->nombre;
         $this->apellido = $this->persona->apellido;
         $this->documento = $this->persona->documento;
@@ -36,7 +51,6 @@ class Edit extends Component
         $this->barrio = $this->persona->barrio;
         $this->telefono = $this->persona->telefono;
         $this->mail = $this->persona->mail;
-        
     }
 
     public function rules(){
@@ -50,8 +64,16 @@ class Edit extends Component
         ];
     }
 
-    public function update(){
-        $this->validate(); //ejecuta funcion rules
+    public function save(){
+        $this->validate(); 
+
+        $this->paciente->colegio = $this->colegio;
+        $this->paciente->grado = $this->grado;
+        $this->paciente->diag_nombres = $this->diag_nombres;
+        $this->paciente->diag_edad = $this->diag_edad;
+        $this->paciente->diag_responsable = $this->diag_responsable;
+        $this->paciente->diag_datos = $this->diag_datos;
+        $this->paciente->centro_programa = $this->centro_programa;
 
         $this->persona->nombre = $this->nombre;
         $this->persona->apellido = $this->apellido;
@@ -63,18 +85,14 @@ class Edit extends Component
         $this->persona->mail = $this->mail;
 
         $this->persona->save();
+        $this->paciente->save();
 
-        sleep(1);
         $this->message = true;
-    }
 
-    public function delete(Persona $persona){
-        $persona->delete();
-        $this->redirect('/persona/lista');
     }
 
     public function render()
     {
-        return view('livewire.persona.edit');
+        return view('livewire.paciente.edit');
     }
 }

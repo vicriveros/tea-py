@@ -10,6 +10,9 @@
         </x-slot>
 
         <x-table>
+        <x-slot name="botones">
+            {{ '' }}
+        </x-slot>
             <thead>
                 <tr>
                     <x-th sortable="true" column="name" :sortCol="$sortCol" :sortAsc="$sortAsc">
