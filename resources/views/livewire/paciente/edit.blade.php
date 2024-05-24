@@ -4,7 +4,7 @@
         <x-slot name="title"> {{ 'Pacientes' }} </x-slot>
     </x-page-title>
 
-    <x-colapsable title="{{ 'Seccion de datos personales' }}" id="1">
+    <x-colapsable title="{{ 'DATOS DE IDENTIFICACIÓN PERSONAL' }}" id="1">
         <x-form-section submit="save">
             <x-slot name="title">
                 {{ 'Datos Personales' }}
@@ -121,6 +121,8 @@
 
         </x-form-section>
     </x-colapsable>
-
+    <x-colapsable title="{{ 'DATOS DEL GRUPO FAMILIAR' }}" id="2">
+        <livewire:paciente.grupo-familiar paciente="{{ $paciente->id }}"/>
+    </x-colapsable>
 
 </div>
