@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Paciente;
 
+use App\Models\Paciente;
 use App\Models\PacientesGruposFamiliares;
 use App\Models\Parentesco;
 use App\Models\Persona;
@@ -10,34 +11,37 @@ use Livewire\Component;
 class GrupoFamiliar extends Component
 {
     public Persona $persona;
+    public Paciente $paciente;
 
     public $nombre = '';
     public $apellido ='';
     public $documento ='';
     public $fecha_nacimiento ='';
     public $parentesco_id ='';
-
-    public $paciente_id ='';
     public $persona_id ='';
+    
+    public $gfam_padres_seprados ='';
+    public $gfam_vive ='';
+    public $gfam_vive_otros ='';
+    public $paciente_id ='';
 
     public $message = false;
 
     // Asignar valor a las variables
-    public function mount(Persona $persona, $paciente){
-        $this->persona = $persona;
-        $this->paciente_id = $paciente;
+    public function mount(Paciente $pacienteid){
+        $this->paciente = $pacienteid;
 
-        $this->nombre = $this->persona->nombre;
-        $this->apellido = $this->persona->apellido;
-        $this->documento = $this->persona->documento;
-        $this->fecha_nacimiento = $this->persona->fecha_nacimiento;
-        
+        $this->paciente_id = $this->paciente->id;
+        $this->gfam_padres_seprados = $this->paciente->gfam_padres_seprados;
+        $this->gfam_vive = $this->paciente->gfam_vive;
+        $this->gfam_vive_otros = $this->paciente->gfam_vive_otros;
     }
 
     public function rules(){
         return [
             'nombre' => ['required'],
             'apellido' => ['required'],
+            'parentesco_id' => ['required'],
         ];
     }
 
@@ -53,6 +57,15 @@ class GrupoFamiliar extends Component
             $this->only(['parentesco_id', 'paciente_id', 'persona_id'])
         );
 
+        $this->message = true;
+    }
+
+    public function save_general(){
+        $this->paciente->gfam_padres_seprados = $this->gfam_padres_seprados;
+        $this->paciente->gfam_vive = $this->gfam_vive;
+        $this->paciente->gfam_vive_otros = $this->gfam_vive_otros;
+
+        $this->paciente->save();
         $this->message = true;
     }
 

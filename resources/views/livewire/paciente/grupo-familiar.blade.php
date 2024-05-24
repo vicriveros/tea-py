@@ -1,7 +1,76 @@
 <div>
+<x-form-section submit="save_general">
+        <x-slot name="title">
+            {{ 'Datos Generales' }}
+        </x-slot>
+
+        <div class="p-6.5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <fieldset class="mb-4.5 flex flex-col gap-2">
+                    <div>
+                        <legend class="mb-3 block text-sm font-medium text-black">¿Padres separados?</legend>
+                    </div>
+                    <div class="flex gap-6">
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_padres_seprados" name="gfam_padres_seprados" type="radio" value="0" checked/>
+                            NO
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_padres_seprados" name="gfam_padres_seprados" type="radio" value="1" />
+                            SI
+                        </label>
+                        <x-input-error for="gfam_padres_seprados" class="mt-2" />
+                    </div>
+                </fieldset>
+
+                <fieldset class="mb-4.5 flex flex-col gap-2">
+                    <div>
+                        <legend class="mb-3 block text-sm font-medium text-black">¿Con quien vive el niño/a?</legend>
+                    </div>
+                    <div class="flex gap-6">
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_vive" name="gfam_vive" type="radio" value="1" checked/>
+                            Ambos
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_vive" name="gfam_vive" type="radio" value="2" />
+                            Padre
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_vive" name="gfam_vive" type="radio" value="3" />
+                            Madre
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input wire:model="gfam_vive" name="gfam_vive" type="radio" value="4" />
+                            Otro
+                        </label>
+                        <x-input-error for="gfam_vive" class="mt-2" />
+                    </div>
+                </fieldset>
+
+                <div class="mb-4.5">
+                    <x-label for="gfam_vive_otros" value="{{ 'Si marco otro, nombrar quien' }}" />
+                    <x-input wire:model="gfam_vive_otros" id="gfam_vive_otros" type="text" />
+                    <x-input-error for="gfam_vive_otros" class="mt-2" />
+                </div>
+
+                <div class="flex justify-center gap-4">
+                    <x-button type="submit" >
+                        {{ 'Guardar' }}
+                    </x-button>    
+                </div>                
+                <x-message> {{ 'Registro Actualizado!' }}  </x-message>
+
+            </div><!--end grid -->
+
+        </div>
+
+    </x-form-section>
+
+    <!-- parentesco -->
     <x-form-section submit="save">
         <x-slot name="title">
-            {{ '¿Con quien vive el niño/a?' }}
+            {{ 'Personas que viven en la casa.' }}
         </x-slot>
 
         <div class="p-6.5">
@@ -10,12 +79,15 @@
             <div>
                 <div class="mb-4.5">
                     <x-label for="parentesco" value="{{ 'Parentesco' }}" />
-                    <select wire:model="parentesco_id" id="parentesco" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                    <select wire:model="parentesco_id" id="parentesco" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">                         
+                       <option value="0">Seleccione</option>
                         @foreach($parentesco as $par)
                             <option value="{{ $par->id }}">{{ $par->nombre }}</option>
                         @endforeach
                     </select>
-                    <x-input-error for="parentesco" class="mt-2" />
+                    <x-input-error for="parentesco_id" class="mt-2">
+                        {{ 'Este campo es requerido.' }}
+                    </x-input-error>
                 </div>
 
                 <div class="mb-4.5">
@@ -51,11 +123,11 @@
 
                 <div class="flex justify-end gap-4">
                     <x-button type="submit" >
-                        {{ 'Guardar' }}
+                        {{ 'Agregar' }}
                     </x-button>    
                 </div>
             </div>
-            <div>
+            <div class="overflow-x-auto">
                 <table class="items-center bg-transparent w-full border-collapse ">
                     <thead>
                         <tr>

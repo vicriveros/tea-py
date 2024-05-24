@@ -122,7 +122,7 @@
         </x-form-section>
     </x-colapsable>
     <x-colapsable title="{{ 'DATOS DEL GRUPO FAMILIAR' }}" id="2">
-        <livewire:paciente.grupo-familiar paciente="{{ $paciente->id }}"/>
+        <livewire:paciente.grupo-familiar pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 
 </div>
