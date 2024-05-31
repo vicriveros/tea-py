@@ -134,4 +134,8 @@
         <livewire:paciente.al-nacer pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 
+    <x-colapsable title="{{ 'ASPECTOS DE SALUD' }}" id="5">
+        <livewire:paciente.aspectos pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
 </div>

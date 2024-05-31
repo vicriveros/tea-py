@@ -127,7 +127,7 @@
                     </x-button>    
                 </div>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto mt-5">
                 <table class="items-center bg-transparent w-full border-collapse ">
                     <thead>
                         <tr>
