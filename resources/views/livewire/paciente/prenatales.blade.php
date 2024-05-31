@@ -106,6 +106,22 @@
                         <option value="Parto inducido"> Parto inducido</option>
                         <option value="Cesárea"> Cesárea </option>
                         <option value="Placenta previa"> Placenta previa </option>
+                        <option value="Ruptura bolsa">Ruptura bolsa</option>
+                        <option value="Bajo peso"> Bajo peso</option>
+                        <option value="Sobrepeso"> Sobrepeso</option>
+                        <option value="Maduro">Maduro</option>
+                        <option value="Post maduro"> Post maduro</option>
+                        <option value="Pres. normal"> Pres. normal </option>
+                        <option value="Pres. nalgas"> Pres. nalgas </option>
+                        <option value="Pres. pie">Pres. pie</option>
+                        <option value="Pres. atravesado"> Pres. atravesado</option>
+                        <option value="Circulares de cordón"> Circulares de cordón</option>
+                        <option value="Color normal">Color normal</option>
+                        <option value="Color anormal"> Color anormal</option>
+                        <option value="Hemorragia intracraneal"> Hemorragia intracraneal </option>
+                        <option value="Ictericia neonatal excesivo"> Ictericia neonatal excesivo </option>
+                        <option value="infecciones"> infecciones </option>
+                        <option value="Vacunaciones inadecuadas">Vacunaciones inadecuadas</option>
                     </select>
                     <x-input-error for="nombres" class="mt-2">
                         {{ 'Este campo es requerido.' }}

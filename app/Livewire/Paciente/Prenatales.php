@@ -46,7 +46,7 @@ class Prenatales extends Component
 
     public function save_parto(){
 
-        $new_persona= Partos::create(
+        Partos::create(
             $this->only(['nombres', 'paciente_id'])
         );
 
