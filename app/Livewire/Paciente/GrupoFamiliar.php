@@ -85,6 +85,9 @@ class GrupoFamiliar extends Component
 
     public function render()
     {
-        return view('livewire.paciente.grupo-familiar', ['parentesco' => Parentesco::all(), 'grupo_fam' => PacientesGruposFamiliares::all()]);
+        return view('livewire.paciente.grupo-familiar', [
+            'parentesco' => Parentesco::all(), 
+            'grupo_fam' => PacientesGruposFamiliares::where('paciente_id', $this->paciente_id)->get()
+        ]);
     }
 }

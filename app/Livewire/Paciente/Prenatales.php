@@ -59,6 +59,8 @@ class Prenatales extends Component
 
     public function render()
     {
-        return view('livewire.paciente.prenatales', ['partos' => Partos::all()]);
+        return view('livewire.paciente.prenatales', [
+            'partos' => Partos::where('paciente_id', $this->paciente_id)->get()
+        ]);
     }
 }
