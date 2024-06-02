@@ -17,3 +17,17 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+    $app = new Illuminate\Foundation\Application(
+        $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+    );
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Update application paths
+    |--------------------------------------------------------------------------
+    */
+    
+    $app->usePublicPath(
+        dirname(__DIR__) . '/..'
+    );

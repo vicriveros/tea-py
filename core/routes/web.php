@@ -1,9 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
+Route::redirect('/', '/app/login');
 
-Route::redirect('/', '/login');
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/app/livewire/livewire.js', $handle);
+});
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/app/livewire/update', $handle);
+});
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])
     ->group(function () {
