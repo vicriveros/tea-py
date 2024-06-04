@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Configuraciones;
 
-use App\Models\Enfermedades as ModelsEnfermedades;
+use App\Models\Tratamiento;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Enfermedades extends Component
+class Tratamientos extends Component
 {
     use WithPagination;
 
@@ -22,7 +22,7 @@ class Enfermedades extends Component
     public function save(){
         $this->validate(); //ejecuta funcion rules
 
-        ModelsEnfermedades::create(
+        Tratamiento::create(
             $this->only(['nombre'])
         );
         
@@ -30,12 +30,14 @@ class Enfermedades extends Component
         $this->message = true;
     }
 
-    public function delete(ModelsEnfermedades $enfer){
-        $enfer->delete();
+    public function delete(Tratamiento $trata){
+        $trata->delete();
     }
 
     public function render()
     {
-        return view('livewire.configuraciones.enfermedades', ['enfermedades' => ModelsEnfermedades::paginate(10)]);
+        return view('livewire.configuraciones.tratamientos', [
+            'tratamientos' => Tratamiento::paginate(10)
+        ]);
     }
 }

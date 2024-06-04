@@ -1,11 +1,11 @@
 <div>
     <x-page-title>
-        <x-slot name="title"> {{ 'Enfermedades' }} </x-slot>
+        <x-slot name="title"> {{ 'Tratamientos' }} </x-slot>
     </x-page-title>
 
     <x-form-section submit="save">
         <x-slot name="title">
-            {{ 'Editar Enfermedades' }}
+            {{ 'Editar Tratamientos' }}
         </x-slot>
 
         <div class="p-6.5">
@@ -14,7 +14,7 @@
             <div>
 
                 <div class="mb-4.5">
-                    <x-label for="name" value="{{ 'Enfermedad Nombre' }}" />
+                    <x-label for="name" value="{{ 'Tratamiento Nombre' }}" />
                     <x-input wire:model="nombre" id="name" type="text" required placeholder="Nombre" />
                     <x-input-error for="nombre" class="mt-2">
                         {{ 'Este campo es requerido.' }}
@@ -39,11 +39,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($enfermedades as $enfer)
-                            <tr wire:key="{{ $enfer->id }}">
-                                <x-td> {{ $enfer->nombre }} </x-td>
+                        @foreach ($tratamientos as $trata)
+                            <tr wire:key="{{ $trata->id }}">
+                                <x-td> {{ $trata->nombre }} </x-td>
                                 <x-td> 
-                                    <x-danger-button wire:click="delete({{ $enfer->id }})" wire:confirm="Seguro que desea eliminar este registro?">
+                                    <x-danger-button wire:click="delete({{ $trata->id }})" wire:confirm="Seguro que desea eliminar este registro?">
                                         <i class="fa-solid fa-trash"></i>
                                     </x-danger-button> 
                                 </x-td>                       
@@ -51,7 +51,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $enfermedades->links() }}
+                {{ $tratamientos->links() }}
             </div>
 
         </div>
