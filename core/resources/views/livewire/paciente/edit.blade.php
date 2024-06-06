@@ -142,4 +142,7 @@
         <livewire:paciente.tratamientos pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 
+    <x-colapsable title="{{ 'PERSONALIDAD' }}" id="9">
+        <livewire:paciente.personalidad pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
 </div>

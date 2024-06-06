@@ -19,6 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::get('configuraciones/enfermedades', \App\Livewire\Configuraciones\Enfermedades::class)->name('enfermedades');
     Route::get('configuraciones/tratamientos', \App\Livewire\Configuraciones\Tratamientos::class)->name('tratamientos');
+    Route::get('configuraciones/aspectos', \App\Livewire\Configuraciones\Aspectos::class)->name('aspectos');
 
     Route::get('usuario/lista', \App\Livewire\Usuario\Index::class)->name('usuarios');
     Route::get('usuario/{id}/edit', \App\Livewire\Usuario\Edit::class)->name('usuario.edit');
