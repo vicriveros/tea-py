@@ -12,6 +12,7 @@ class Personalidad extends Component
     public Paciente $paciente;
     public $paciente_id = '';
     public $aspecto_id = '';
+    public $tipo_aspecto = '';
     
     public $message = false;
 
@@ -21,9 +22,10 @@ class Personalidad extends Component
     }
 
     public function save_asp(){
-
+        $asp = Aspecto::find($this->aspecto_id);
+        $this->tipo_aspecto = $asp->tipo;
         PacientesAspectos::create(
-            $this->only(['aspecto_id', 'paciente_id'])
+            $this->only(['aspecto_id', 'paciente_id', 'tipo_aspecto'])
         );
 
         $this->message = true;
@@ -42,7 +44,9 @@ class Personalidad extends Component
     {
         return view('livewire.paciente.personalidad', [
             'pa_aspectos' => PacientesAspectos::where('paciente_id', $this->paciente_id)->get(),
-            'aspectos' => Aspecto::all()
+            'aspectos1' => Aspecto::where('tipo', 1)->get(),
+            'aspectos2' => Aspecto::where('tipo', 2)->get(),
+            'aspectos3' => Aspecto::where('tipo', 3)->get()
         ]);
     }
 }

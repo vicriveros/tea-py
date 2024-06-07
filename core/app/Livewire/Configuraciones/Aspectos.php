@@ -11,6 +11,7 @@ class Aspectos extends Component
     use WithPagination;
 
     public $nombre = '';
+    public $tipo = '';
     public $message = false;
 
     public function rules(){
@@ -23,7 +24,7 @@ class Aspectos extends Component
         $this->validate(); //ejecuta funcion rules
 
         Aspecto::create(
-            $this->only(['nombre'])
+            $this->only(['nombre', 'tipo'])
         );
         
         $this->reset();
@@ -32,6 +33,36 @@ class Aspectos extends Component
 
     public function delete(Aspecto $asp){
         $asp->delete();
+    }
+
+    public static function getTipo($id){
+        $name='';
+        switch ($id) {
+            case '1':
+                $name='ASPECTOS EMOCIONALES';
+                break;
+            
+            case '2':
+                $name='ASPECTOS SOCIALES';
+                break;
+
+            case '3':
+                $name='HABILIDADES SOCIALES';
+                break;
+
+            case '4':
+                $name='SENSORIALES';
+                break;
+
+            case '5':
+                $name='CONDUCTUALES';
+                break;
+
+            default:
+                $name='';
+                break;
+        }
+        return $name;    
     }
 
     public function render()
