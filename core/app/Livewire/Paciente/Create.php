@@ -5,6 +5,7 @@ namespace App\Livewire\Paciente;
 use Livewire\Component;
 use App\Models\Paciente;
 use App\Models\Persona;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
@@ -20,6 +21,7 @@ class Create extends Component
     public $telefono ='';
     public $mail ='';
     public $persona_id ='';
+    public $user_id ='';
 
     public $colegio ='';
     public $grado ='';
@@ -51,9 +53,10 @@ class Create extends Component
             $this->only(['nombre', 'apellido', 'documento', 'fecha_nacimiento', 'direccion', 'barrio', 'telefono', 'mail'])
         );
         $this->persona_id = $new_persona->id;
+        $this->user_id = Auth::id();
 
         $new_paciente= Paciente::create(
-            $this->only(['colegio', 'grado', 'diag_nombres', 'diag_edad', 'diag_responsable', 'diag_datos', 'centro_programa', 'persona_id', 'nacionalidad_id'])
+            $this->only(['colegio', 'grado', 'diag_nombres', 'diag_edad', 'diag_responsable', 'diag_datos', 'centro_programa', 'persona_id', 'nacionalidad_id', 'user_id'])
         );
 
         $this->message = true;

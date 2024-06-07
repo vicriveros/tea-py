@@ -15,7 +15,7 @@ class CreatePacientesAspectosTable extends Migration
     {
         Schema::create('pacientes_aspectos', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('respuesta')->nullable()->default(0)->comment('0. no\n1. si');
+            $table->smallInteger('tipo_aspecto')->nullable()->default(0);
             $table->foreignId('aspecto_id')->constrained('aspectos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

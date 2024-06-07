@@ -15,6 +15,7 @@ class CreatePacientesTable extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('colegio', 200)->nullable();
             $table->string('grado', 100)->nullable();
             $table->string('diag_nombres', 500)->nullable();
