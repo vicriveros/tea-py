@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Livewire\Paciente;
 
 use App\Models\Paciente;

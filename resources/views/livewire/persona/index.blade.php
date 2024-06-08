@@ -8,7 +8,7 @@
         <x-slot name="title">
             {{ 'Lista de Pacientes' }}
         </x-slot>
-
+ 
         <x-table>
             <x-slot name="botones">
                 <a href="{{ route('persona.create') }}" class="flex justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90 place-self-end"> Agregar </a>
