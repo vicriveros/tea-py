@@ -14,7 +14,7 @@ class GrupoFamiliar extends Component
     public Paciente $paciente;
 
     public $nombre = '';
-    public $apellido ='';
+    public $apellido =''; 
     public $documento ='';
     public $fecha_nacimiento ='';
     public $parentesco_id ='';
