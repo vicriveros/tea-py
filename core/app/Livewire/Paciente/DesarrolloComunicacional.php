@@ -13,7 +13,7 @@ class DesarrolloComunicacional extends Component
 
     public $gorgeo = '';
     public $balbuceo = '';
-    public $sonrrisa_social = '';
+    public $sonrisa_social = '';
     public $fija_mirada = '';
     public $com_no = '';
     public $prim_palabras = '';
@@ -28,14 +28,16 @@ class DesarrolloComunicacional extends Component
 
     public $message = false;
 
-    public function mount(DesarrollosComunicacionales $desarrolloComunicacional, Paciente $pacienteid){
-        $this->desarrolloComunicacional = $desarrolloComunicacional;
+    public function mount(Paciente $pacienteid){
         $this->paciente = $pacienteid;
-
         $this->paciente_id = $this->paciente->id;
+        $this->desarrolloComunicacional = DesarrollosComunicacionales::firstOrNew([
+            'paciente_id' => $this->paciente_id
+        ]);
+
         $this->gorgeo = $this->desarrolloComunicacional->gorgeo;
         $this->balbuceo = $this->desarrolloComunicacional->balbuceo;
-        $this->sonrrisa_social = $this->desarrolloComunicacional->sonrrisa_social;
+        $this->sonrisa_social = $this->desarrolloComunicacional->sonrisa_social;
         $this->fija_mirada = $this->desarrolloComunicacional->fija_mirada;
         $this->com_no = $this->desarrolloComunicacional->com_no;
         $this->prim_palabras = $this->desarrolloComunicacional->prim_palabras;
@@ -53,7 +55,7 @@ class DesarrolloComunicacional extends Component
         return [
             'gorgeo' => ['required'],
             'balbuceo' => ['required'],
-            'sonrrisa_social' => ['required'],
+            'sonrisa_social' => ['required'],
             'fija_mirada' => ['required'],
             'com_no' => ['required'],
             'prim_palabras' => ['required'],
@@ -71,20 +73,20 @@ class DesarrolloComunicacional extends Component
     public function save(){
         $this->validate(); //ejecuta funcion rules
 
-        $this->paciente_id = $this->desarrolloComunicacional->paciente_id;
-        $this->gorgeo = $this->desarrolloComunicacional->gorgeo;
-        $this->balbuceo = $this->desarrolloComunicacional->balbuceo;
-        $this->sonrrisa_social = $this->desarrolloComunicacional->sonrrisa_social;
-        $this->fija_mirada = $this->desarrolloComunicacional->fija_mirada;
-        $this->com_no = $this->desarrolloComunicacional->com_no;
-        $this->prim_palabras = $this->desarrolloComunicacional->prim_palabras;
-        $this->frases2_palabras = $this->desarrolloComunicacional->frases2_palabras;
-        $this->ora_completa = $this->desarrolloComunicacional->ora_completa;
-        $this->com_ordenes = $this->desarrolloComunicacional->com_ordenes;
-        $this->cum_ordenes = $this->desarrolloComunicacional->cum_ordenes;
-        $this->sis_com = $this->desarrolloComunicacional->sis_com;
-        $this->se_expresa = $this->desarrolloComunicacional->se_expresa;
-        $this->se_expresa_como = $this->desarrolloComunicacional->se_expresa_como;
+        $this->desarrolloComunicacional->paciente_id = $this->paciente_id;
+        $this->desarrolloComunicacional->gorgeo = $this->gorgeo;
+        $this->desarrolloComunicacional->balbuceo = $this->balbuceo;
+        $this->desarrolloComunicacional->sonrisa_social = $this->sonrisa_social;
+        $this->desarrolloComunicacional->fija_mirada = $this->fija_mirada;
+        $this->desarrolloComunicacional->com_no = $this->com_no;
+        $this->desarrolloComunicacional->prim_palabras = $this->prim_palabras;
+        $this->desarrolloComunicacional->frases2_palabras = $this->frases2_palabras;
+        $this->desarrolloComunicacional->ora_completa = $this->ora_completa;
+        $this->desarrolloComunicacional->com_ordenes = $this->com_ordenes;
+        $this->desarrolloComunicacional->cum_ordenes = $this->cum_ordenes;
+        $this->desarrolloComunicacional->sis_com = $this->sis_com;
+        $this->desarrolloComunicacional->se_expresa = $this->se_expresa;
+        $this->desarrolloComunicacional->se_expresa_como = $this->se_expresa_como;
 
         $this->desarrolloComunicacional->save();
         $this->message = true;

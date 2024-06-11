@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="mb-4.5">
-                    <x-label for="sonrrisa_social" value="{{ 'Sonrrisa social' }}" />
-                    <x-input wire:model="sonrrisa_social" id="sonrrisa_social" type="text" />
-                    <x-input-error for="sonrrisa_social" class="mt-2">
+                    <x-label for="sonrisa_social" value="{{ 'Sonrisa social' }}" />
+                    <x-input wire:model="sonrisa_social" id="sonrisa_social" type="text" />
+                    <x-input-error for="sonrisa_social" class="mt-2">
                         {{ 'Este campo es requerido.' }}
                     </x-input-error>
                 </div>
