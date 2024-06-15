@@ -153,4 +153,16 @@
     <x-colapsable title="{{ 'PERSONALIDAD' }}" id="9">
         <livewire:paciente.personalidad pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
+
+    <x-colapsable title="{{ 'ASPECTOS' }}" id="10">
+        <livewire:paciente.aspecto-sensorial-conductual pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
+    <x-colapsable title="{{ 'ACTIVIDADES RECREATIVAS' }}" id="12">
+        <livewire:paciente.actividad-recreativa pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
+    <x-colapsable title="{{ 'ACTIVIDADES ESCOLARES' }}" id="13">
+        <livewire:paciente.escolaridad pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
 </div>
