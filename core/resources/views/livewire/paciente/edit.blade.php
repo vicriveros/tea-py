@@ -157,6 +157,10 @@
     <x-colapsable title="{{ 'ASPECTOS' }}" id="10">
         <livewire:paciente.aspecto-sensorial-conductual pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
+    
+    <x-colapsable title="{{ 'HABITOS DE LA CASA' }}" id="11">
+        <livewire:paciente.habitos-casa pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
 
     <x-colapsable title="{{ 'ACTIVIDADES RECREATIVAS' }}" id="12">
         <livewire:paciente.actividad-recreativa pacienteid="{{ $paciente->id }}"/>
