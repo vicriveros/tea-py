@@ -113,7 +113,7 @@
 
                 <div class="mb-4.5">
                     <x-label for="fecha_nacimiento" value="{{ 'Fecha Nacimiento' }}" />
-                    <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="text" required  placeholder="Fecha Nacimiento" />
+                    <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="date" required  placeholder="Fecha Nacimiento" />
                     <x-input-error for="fecha_nacimiento" class="mt-2" />
                 </div>
 

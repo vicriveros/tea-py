@@ -23,7 +23,7 @@
 
                 <div class="mb-4.5">
                     <x-label for="fecha_eval" value="{{ 'Fecha de la Evaluación' }}" />
-                    <x-input wire:model="fecha_eval" id="fecha_eval" type="text" />
+                    <x-input wire:model="fecha_eval" id="fecha_eval" type="date" />
                     <x-input-error for="fecha_eval" class="mt-2" />
                 </div>
 

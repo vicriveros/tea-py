@@ -5,9 +5,10 @@ namespace App\Livewire\Paciente;
 use App\Models\Aspecto;
 use App\Models\Paciente;
 use App\Models\PacientesAspectos;
+
 use Livewire\Component;
 
-class Personalidad extends Component
+class AspectoSensorialConductual extends Component
 {
     public Paciente $paciente;
     public $paciente_id = '';
@@ -42,13 +43,12 @@ class Personalidad extends Component
 
     public function render()
     {
-        return view('livewire.paciente.personalidad', [
+        return view('livewire.paciente.aspecto-sensorial-conductual', [
             'pa_aspectos' => PacientesAspectos::where('paciente_id', $this->paciente_id)
-                                ->whereBetween('tipo_aspecto', [1, 3])
-                                ->get(),
-            'aspectos1' => Aspecto::where('tipo', 1)->get(),
-            'aspectos2' => Aspecto::where('tipo', 2)->get(),
-            'aspectos3' => Aspecto::where('tipo', 3)->get()
+                                  ->whereBetween('tipo_aspecto', [4, 5])
+                                  ->get(),
+            'aspectos4' => Aspecto::where('tipo', 4)->get(),
+            'aspectos5' => Aspecto::where('tipo', 5)->get()
         ]);
     }
 }

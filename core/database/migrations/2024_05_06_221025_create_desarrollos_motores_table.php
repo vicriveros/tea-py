@@ -25,7 +25,6 @@ class CreateDesarrollosMotoresTable extends Migration
             $table->smallInteger('dif_motora')->nullable()->default(0)->comment('0. no\n1. si');
             $table->smallInteger('trata_especial')->nullable()->default(0)->comment('0. no\n1. si');
             $table->string('trata_especial_tiempo', 50)->nullable();
-            $table->string('paciente_desa_motorcol', 45)->nullable();
             $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -34,10 +34,10 @@
 
                 <div class="mb-4.5">
                     <x-label for="fecha_nacimiento" value="{{ 'Fecha Nacimiento. Ej: año-mes-dia' }}" />
-                    <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="text" required  placeholder="2000-10-24" />
+                    <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="date" required  placeholder="2000-10-24" />
                     <x-input-error for="fecha_nacimiento" class="mt-2" />
                 </div>
-
+ 
                 <div class="mb-4.5">
                     <x-label for="direccion" value="{{ 'Dirección' }}" />
                     <x-input wire:model="direccion" id="direccion" type="text"  placeholder="Dirección" />

@@ -35,7 +35,7 @@
 
                     <div class="mb-4.5">
                         <x-label for="fecha_nacimiento" value="{{ 'Fecha Nacimiento. Ej: año-mes-dia' }}" />
-                        <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="text" required  placeholder="2000-10-24" />
+                        <x-input wire:model="fecha_nacimiento" id="fecha_nacimiento" type="date" required  placeholder="2000-10-24" />
                         <x-input-error for="fecha_nacimiento" class="mt-2" />
                     </div>
 
@@ -134,6 +134,14 @@
         <livewire:paciente.al-nacer pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 
+    <x-colapsable title="{{ 'DESARROLLO MOTOR' }}" id="5">
+        <livewire:paciente.desarrollo-motor pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
+    <x-colapsable title="{{ 'DESARROLLO COMUNICACIONAL' }}" id="6">
+        <livewire:paciente.desarrollo-comunicacional pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
     <x-colapsable title="{{ 'ASPECTOS DE SALUD' }}" id="7">
         <livewire:paciente.aspectos pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
@@ -146,7 +154,19 @@
         <livewire:paciente.personalidad pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 
+    <x-colapsable title="{{ 'ASPECTOS' }}" id="10">
+        <livewire:paciente.aspecto-sensorial-conductual pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+    
     <x-colapsable title="{{ 'HABITOS DE LA CASA' }}" id="11">
         <livewire:paciente.habitos-casa pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
+    <x-colapsable title="{{ 'ACTIVIDADES RECREATIVAS' }}" id="12">
+        <livewire:paciente.actividad-recreativa pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
+
+    <x-colapsable title="{{ 'ACTIVIDADES ESCOLARES' }}" id="13">
+        <livewire:paciente.escolaridad pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
 </div>

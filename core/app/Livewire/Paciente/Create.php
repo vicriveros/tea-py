@@ -32,7 +32,6 @@ class Create extends Component
     public $centro_programa ='';
     public $nacionalidad_id =1;
 
-
     public $message = false;
 
     public function rules(){
