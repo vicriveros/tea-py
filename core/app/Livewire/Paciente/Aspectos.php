@@ -73,7 +73,7 @@ class Aspectos extends Component
     {
         return view('livewire.paciente.aspectos', [
             'pa_enfermedades' => PacientesEnfermedades::where('paciente_id', $this->paciente_id)->get(),
-            'enfermedades' => Enfermedades::all()
+            'enfermedades' => Enfermedades::where('tipo', '1')->get()
         ]);
     }
 }

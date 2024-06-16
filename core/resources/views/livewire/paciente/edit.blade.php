@@ -169,4 +169,8 @@
     <x-colapsable title="{{ 'ACTIVIDADES ESCOLARES' }}" id="13">
         <livewire:paciente.escolaridad pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
+
+    <x-colapsable title="{{ 'OTROS HÁBITOS' }}" id="14">
+        <livewire:paciente.fisicas-biologicas pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
 </div>

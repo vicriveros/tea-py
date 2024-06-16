@@ -11,6 +11,7 @@ class Enfermedades extends Component
     use WithPagination;
 
     public $nombre = '';
+    public $tipo = '';
     public $message = false;
 
     public function rules(){
@@ -23,7 +24,7 @@ class Enfermedades extends Component
         $this->validate(); //ejecuta funcion rules
 
         ModelsEnfermedades::create(
-            $this->only(['nombre'])
+            $this->only(['nombre', 'tipo'])
         );
         
         $this->reset();
@@ -32,6 +33,24 @@ class Enfermedades extends Component
 
     public function delete(ModelsEnfermedades $enfer){
         $enfer->delete();
+    }
+
+    public static function getTipo($id){
+        $name='';
+        switch ($id) {
+            case '1':
+                $name='Generales';
+                break;
+            
+            case '2':
+                $name='Gastrointestinales';
+                break;
+
+            default:
+                $name='';
+                break;
+        }
+        return $name;    
     }
 
     public function render()

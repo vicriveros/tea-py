@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/app/login');
  
 Livewire::setScriptRoute(function ($handle) {
     return Route::get('/app/livewire/livewire.js', $handle);

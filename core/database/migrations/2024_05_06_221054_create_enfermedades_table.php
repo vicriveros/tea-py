@@ -16,6 +16,7 @@ class CreateEnfermedadesTable extends Migration
         Schema::create('enfermedades', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 200)->nullable();
+            $table->smallInteger('tipo')->nullable()->default(1)->comment('1. generales \n2. gastrointestinales');
             $table->smallInteger('estado')->nullable()->default(1);
             $table->smallInteger('activo')->nullable()->default(1);
             $table->timestamps();

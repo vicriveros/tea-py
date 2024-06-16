@@ -20,6 +20,18 @@
                         {{ 'Este campo es requerido.' }}
                     </x-input-error>
                 </div>
+
+                <div class="mb-4.5">
+                    <x-label for="tipo" value="{{ 'Tipo de Enfermedad' }}" />
+                    <select wire:model="tipo" id="tipo" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">                         
+                        <option value="0">Seleccione</option>
+                        <option value="1"> Generales</option>
+                        <option value="2"> Gastrointestinales</option>
+                    </select>
+                    <x-input-error for="tipo" class="mt-2">
+                        {{ 'Este campo es requerido.' }}
+                    </x-input-error>
+                </div>
             
                 <x-message> {{ 'Registro Actualizado!' }}  </x-message>
 
@@ -35,6 +47,7 @@
                     <thead>
                         <tr>
                             <x-th> Nombre </x-th>
+                            <x-th> Tipo </x-th>
                             <x-th> </x-th>
                         </tr>
                     </thead>
@@ -42,6 +55,7 @@
                         @foreach ($enfermedades as $enfer)
                             <tr wire:key="{{ $enfer->id }}">
                                 <x-td> {{ $enfer->nombre }} </x-td>
+                                <x-td> {{ App\Livewire\Configuraciones\Enfermedades::getTipo($enfer->tipo) }} </x-td>
                                 <x-td> 
                                     <x-danger-button wire:click="delete({{ $enfer->id }})" wire:confirm="Seguro que desea eliminar este registro?">
                                         <i class="fa-solid fa-trash"></i>
