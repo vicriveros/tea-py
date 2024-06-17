@@ -173,4 +173,8 @@
     <x-colapsable title="{{ 'OTROS HÁBITOS' }}" id="14">
         <livewire:paciente.fisicas-biologicas pacienteid="{{ $paciente->id }}"/>
     </x-colapsable>
+
+    <x-colapsable title="{{ 'CONDUCTAS' }}" id="15">
+        <livewire:paciente.conductuales-emocionales pacienteid="{{ $paciente->id }}"/>
+    </x-colapsable>
 </div>

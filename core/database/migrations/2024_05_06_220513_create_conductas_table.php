@@ -16,6 +16,7 @@ class CreateConductasTable extends Migration
         Schema::create('conductas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 200)->nullable();
+            $table->smallInteger('tipo')->nullable()->default(1)->comment('1. Conductuales\n2. Emocionales');
             $table->smallInteger('estado')->nullable()->default(1);
             $table->smallInteger('activo')->nullable()->default(1);
             $table->timestamps();
