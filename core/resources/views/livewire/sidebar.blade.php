@@ -44,6 +44,7 @@
           <!-- Menu Item Calendar -->
 
           <!-- Menu Item Profile -->
+          @can('listar paciente')
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark {{ Request::routeIs('personas') ? 'bg-graydark' : '' }}"
@@ -52,9 +53,11 @@
               Pacientes
             </a>
           </li>
+          @endcan
           <!-- Menu Item Profile -->
 
           <!-- Menu Item Configuraciones -->
+          @can('manejar configuraciones')
           <li>
             <a
               class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark "
@@ -70,40 +73,51 @@
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden"  x-bind:class="(selected === 'Configuraciones') ? 'block' :'hidden'">
               <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                @can('manejar usuarios')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('usuarios') ? 'bg-graydark' : '' }}"
                   href="{{ route('usuarios') }}">
                         Usuarios
                   </a>
                 </li>
+                @endcan
+                @can('manejar enfermedades')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('enfermedades') ? 'bg-graydark' : '' }}"
                   href="{{ route('enfermedades') }}">
                         Enfermedades
                   </a>
                 </li>
+                @endcan
+                @can('manejar tratamientos')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('tratamientos') ? 'bg-graydark' : '' }}"
                   href="{{ route('tratamientos') }}">
                         Tratamientos
                   </a>
                 </li>
+                @endcan
+                @can('manejar aspectos')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('aspectos') ? 'bg-graydark' : '' }}"
                   href="{{ route('aspectos') }}">
                         Aspectos
                   </a>
                 </li>
+                @endcan
+                @can('manejar conductas')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('conductas') ? 'bg-graydark' : '' }}"
                   href="{{ route('conductas') }}">
                         Conductas
                   </a>
                 </li>
+                @endcan
               </ul>
             </div>
             <!-- Dropdown Menu End -->
           </li>
+          @endcan
           <!-- Menu Item Configuraciones -->
 
         </ul>

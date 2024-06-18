@@ -15,12 +15,18 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        /** Lista de Permisos */
-        Permission::create(['name' => 'manejar usuarios']);
+        /** Lista de Permisos */        
         Permission::create(['name' => 'crear paciente']);
         Permission::create(['name' => 'editar paciente']);
         Permission::create(['name' => 'eliminar paciente']);
         Permission::create(['name' => 'listar paciente']);
+
+        Permission::create(['name' => 'manejar configuraciones']);
+        Permission::create(['name' => 'manejar usuarios']);
+        Permission::create(['name' => 'manejar enfermedades']);
+        Permission::create(['name' => 'manejar tratamientos']);
+        Permission::create(['name' => 'manejar aspectos']);
+        Permission::create(['name' => 'manejar conductas']);
 
 
         /** Lista de Roles */
@@ -32,8 +38,16 @@ class RolesAndPermissionsSeeder extends Seeder
         /** Asignar Permisos a Roles */
         $adminRole->givePermissionTo(Permission::all());
         $pacienteRole->givePermissionTo(['crear paciente', 'editar paciente']);
-        $profesionalRole->givePermissionTo(['listar paciente', 'editar paciente']);
-        $staffRole->givePermissionTo(['listar paciente', 'editar paciente']);
+        $profesionalRole->givePermissionTo([
+            'listar paciente', 
+            'editar paciente', 
+            'manejar configuraciones',
+            'manejar enfermedades', 
+            'manejar tratamientos', 
+            'manejar aspectos',
+            'manejar conductas'
+        ]);
+        $staffRole->givePermissionTo(['listar paciente', 'editar paciente', 'manejar configuraciones', 'manejar usuarios']);
 
         /** Crear Super Admin */
         $adminUser = User::factory()->create([
