@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 class Enfermedades extends Component
-{
+{ 
     use WithPagination;
 
     public $nombre = '';
@@ -41,7 +41,7 @@ class Enfermedades extends Component
             case '1':
                 $name='Generales';
                 break;
-            
+             
             case '2':
                 $name='Gastrointestinales';
                 break;
