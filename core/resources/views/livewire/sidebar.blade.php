@@ -129,6 +129,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('manejar consultorios')
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('consultorios') ? 'bg-graydark' : '' }}"
+                  href="{{ route('consultorios') }}">
+                        Consultorios
+                  </a>
+                </li>
+                @endcan
               </ul>
             </div>
             <!-- Dropdown Menu End -->

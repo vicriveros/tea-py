@@ -32,7 +32,8 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'manejar aspectos']);
         Permission::create(['name' => 'manejar conductas']);
         Permission::create(['name' => 'manejar especialidades']);
-
+        Permission::create(['name' => 'manejar consultorios']);
+        Permission::create(['name' => 'manejar horarios']);
 
         /** Lista de Roles */
         $adminRole = Role::create(['name' => 'Administrador']);

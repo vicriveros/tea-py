@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Medico;
 
+use App\Models\Medicos;
+use App\Models\MedicosHorarios;
+
 use Livewire\Component;
 
 class Horario extends Component

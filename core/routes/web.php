@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('configuraciones/aspectos', \App\Livewire\Configuraciones\Aspectos::class)->name('aspectos');
     Route::get('configuraciones/conductas', \App\Livewire\Configuraciones\Conductas::class)->name('conductas');
     Route::get('configuraciones/especialidades', \App\Livewire\Configuraciones\Especialidades::class)->name('especialidades');
+    Route::get('configuraciones/consultorios', \App\Livewire\Configuraciones\Consultorios::class)->name('consultorios');
 
     Route::get('usuario/lista', \App\Livewire\Usuario\Index::class)->name('usuarios');
     Route::get('usuario/{id}/edit', \App\Livewire\Usuario\Edit::class)->name('usuario.edit');
