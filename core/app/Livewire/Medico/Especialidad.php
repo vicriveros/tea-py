@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Livewire\Medico;
 
 use App\Models\Medicos;
@@ -39,7 +39,7 @@ class Especialidad extends Component
         $espe = Especialidades::find($id);
         return $espe->nombre;    
     }
-
+ 
     public function render()
     {
         return view('livewire.medico.especialidad', [

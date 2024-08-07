@@ -3,7 +3,7 @@
         <x-slot name="title">
             {{ 'Especialidades del profesional' }}
         </x-slot>
-
+ 
         <div class="p-6.5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             
