@@ -11,7 +11,7 @@ use App\Models\Persona;
 use App\Models\Nacionalidad;
 use App\Models\Tratamiento;
 use App\Models\Parentesco;
-
+use App\Models\Especialidades;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         Tratamiento::factory(20)->create();
         Aspecto::factory(30)->create();
         Enfermedades::factory(30)->create();
+        Especialidades::Factory(30)->create();
     }
 }

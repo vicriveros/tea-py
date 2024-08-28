@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-Route::redirect('/', '/app/login');
+Route::redirect('/', '/login');
  
 Livewire::setScriptRoute(function ($handle) {
     return Route::get('/app/livewire/livewire.js', $handle);
@@ -22,6 +22,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('configuraciones/tratamientos', \App\Livewire\Configuraciones\Tratamientos::class)->name('tratamientos');
     Route::get('configuraciones/aspectos', \App\Livewire\Configuraciones\Aspectos::class)->name('aspectos');
     Route::get('configuraciones/conductas', \App\Livewire\Configuraciones\Conductas::class)->name('conductas');
+    Route::get('configuraciones/especialidades', \App\Livewire\Configuraciones\Especialidades::class)->name('especialidades');
+    Route::get('configuraciones/consultorios', \App\Livewire\Configuraciones\Consultorios::class)->name('consultorios');
 
     Route::get('usuario/lista', \App\Livewire\Usuario\Index::class)->name('usuarios');
     Route::get('usuario/{id}/edit', \App\Livewire\Usuario\Edit::class)->name('usuario.edit');
@@ -33,5 +35,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('paciente/lista', \App\Livewire\Paciente\Index::class)->name('pacientes');
     Route::get('paciente/create', \App\Livewire\Paciente\Create::class)->name('paciente.create');
     Route::get('paciente/{paciente}/edit', \App\Livewire\Paciente\Edit::class)->name('paciente.edit');
+
+    Route::get('medico/lista', \App\Livewire\Medico\Index::class)->name('profesionales');
+    Route::get('medico/create', \App\Livewire\Medico\Create::class)->name('profesional.create');
+    Route::get('medico/{medico}/edit', \App\Livewire\Medico\Edit::class)->name('profesional.edit');
+
 
 });

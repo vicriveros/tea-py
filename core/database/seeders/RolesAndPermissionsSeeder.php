@@ -20,6 +20,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'editar paciente']);
         Permission::create(['name' => 'eliminar paciente']);
         Permission::create(['name' => 'listar paciente']);
+        Permission::create(['name' => 'crear medico']);
+        Permission::create(['name' => 'editar medico']);
+        Permission::create(['name' => 'eliminar medico']);
+        Permission::create(['name' => 'listar medico']);
 
         Permission::create(['name' => 'manejar configuraciones']);
         Permission::create(['name' => 'manejar usuarios']);
@@ -27,7 +31,9 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'manejar tratamientos']);
         Permission::create(['name' => 'manejar aspectos']);
         Permission::create(['name' => 'manejar conductas']);
-
+        Permission::create(['name' => 'manejar especialidades']);
+        Permission::create(['name' => 'manejar consultorios']);
+        Permission::create(['name' => 'manejar horarios']);
 
         /** Lista de Roles */
         $adminRole = Role::create(['name' => 'Administrador']);
