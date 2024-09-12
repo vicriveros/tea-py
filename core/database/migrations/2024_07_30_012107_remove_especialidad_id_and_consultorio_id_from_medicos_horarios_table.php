@@ -21,10 +21,10 @@ class RemoveEspecialidadIdAndConsultorioIdFromMedicosHorariosTable extends Migra
             $table->dropColumn('especialidad_id');
             
             // Luego eliminar la clave foránea para consultorio_id
-            $table->dropForeign(['consultorio_id']);
+            //$table->dropForeign(['consultorio_id']);
             
             // Finalmente, eliminar la columna consultorio_id
-            $table->dropColumn('consultorio_id');
+            //$table->dropColumn('consultorio_id');
         });
     }
 
@@ -38,11 +38,11 @@ class RemoveEspecialidadIdAndConsultorioIdFromMedicosHorariosTable extends Migra
         Schema::table('medicos_horarios', function (Blueprint $table) {
             // Volver a agregar las columnas
             $table->unsignedBigInteger('especialidad_id')->nullable();
-            $table->unsignedBigInteger('consultorio_id')->nullable();
+            //$table->unsignedBigInteger('consultorio_id')->nullable();
             
             // Volver a agregar las claves foráneas (asegúrate de definir la tabla y columna referenciada correctamente)
             $table->foreign('especialidad_id')->references('id')->on('especialidades')->onDelete('set null');
-            $table->foreign('consultorio_id')->references('id')->on('consultorios')->onDelete('set null');
+            //$table->foreign('consultorio_id')->references('id')->on('consultorios')->onDelete('set null');
         });
     }
 }

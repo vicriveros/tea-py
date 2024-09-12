@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Medico;
 
+use App\Models\Consultorios;
 use App\Models\Medicos;
 use App\Models\MedicosHorarios;
 
@@ -18,11 +19,13 @@ class Horario extends Component
     public $fecha_final = '';
     public $hora_desde = '';
     public $hora_hasta = '';
+    public $consultorios = '';
+    public $consultorio_id = '';
 
     public function mount(Medicos $medicoid){
         $this->medico = $medicoid;
         $this->medico_id = $this->medico->id;
-        
+        $this->consultorios = Consultorios::all();
         $this->dias = [
             1 => 'Domingo',
             2 => 'Lunes',
@@ -38,7 +41,7 @@ class Horario extends Component
     public function save_hora(){
 
         MedicosHorarios::create(
-            $this->only(['medico_id', 'dia', 'fecha_inicio', 'fecha_final', 'hora_desde', 'hora_hasta'])
+            $this->only(['consultorio_id', 'medico_id', 'dia', 'fecha_inicio', 'fecha_final', 'hora_desde', 'hora_hasta'])
         );
 
         $this->message = true;
@@ -51,6 +54,12 @@ class Horario extends Component
     public function getHorarios()
     {
         return MedicosHorarios::where('medico_id', $this->medico_id)->get();
+    }
+    
+    public function getConsultorio($id)
+    {
+        $cons = Consultorios::find($id);
+        return $cons->nombre;  
     }
 
     public function getDiaNombre($dia)

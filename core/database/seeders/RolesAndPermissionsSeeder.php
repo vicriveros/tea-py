@@ -25,6 +25,9 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'eliminar medico']);
         Permission::create(['name' => 'listar medico']);
 
+        Permission::create(['name' => 'agendar paciente']);
+        Permission::create(['name' => 'editar agenda']);
+
         Permission::create(['name' => 'manejar configuraciones']);
         Permission::create(['name' => 'manejar usuarios']);
         Permission::create(['name' => 'manejar enfermedades']);

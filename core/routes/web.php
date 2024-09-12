@@ -40,5 +40,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('medico/create', \App\Livewire\Medico\Create::class)->name('profesional.create');
     Route::get('medico/{medico}/edit', \App\Livewire\Medico\Edit::class)->name('profesional.edit');
 
+    Route::get('agendamiento/calendario', \App\Livewire\Agendamiento\Calendario::class)->name('agendamiento.calendario');
+    Route::get('agendamiento/cita', \App\Livewire\Agendamiento\Cita::class)->name('agendamiento.cita');
 
 });

@@ -8,6 +8,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <div class="mb-4.5">
+                        <x-label for="consultorio_id" value="{{ 'Consultorio' }}" />
+                        <select wire:model="consultorio_id" id="consultorio_id" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                            <option value="0">Seleccione</option>
+                            @foreach($consultorios as $cons)
+                                <option value="{{ $cons->id }}">{{ $cons->nombre }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error for="dia" class="mt-2">
+                            {{ 'Este campo es requerido.' }}
+                        </x-input-error>
+                    </div>
+                    <div class="mb-4.5">
                         <x-label for="dia" value="{{ 'Día' }}" />
                         <select wire:model="dia" id="dia" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                             <option value="0">Seleccione</option>
@@ -62,23 +74,22 @@
                     <table class="items-center bg-transparent w-full border-collapse ">
                         <thead>
                             <tr>
+                                <x-th> Consultorio </x-th>
                                 <x-th> Dia </x-th>
-                                <x-th> Inicio </x-th>
-                                <x-th> Hora</x-th>
-                                <x-th> Fin </x-th>
-                                <x-th> Hora</x-th>
+                                <x-th> Hora Ini</x-th>
+                                <x-th> Hora Fin </x-th>
+                                <x-th>  </x-th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($me_horarios as $hora)
                                 <tr wire:key="{{ $hora->id }}">
-                                    <x-td> {{App\Livewire\Medico\Horario::getDiaNombre($hora->dia) }}</x-td>
-                                    <x-td> {{ $hora->fecha_inicio }} </x-td>
+                                    <x-td> {{App\Livewire\Medico\Horario::getConsultorio($hora->consultorio_id) }}</x-td>
+                                    <x-td> {{App\Livewire\Medico\Horario::getDiaNombre($hora->dia) }} </x-td>
                                     <x-td> {{ $hora->hora_desde }} </x-td>
-                                    <x-td> {{ $hora->fecha_final }} </x-td>
                                     <x-td> {{ $hora->hora_hasta }}</x-td>
                                     <x-td> 
-                                        <x-danger-button wire:click="" wire:confirm="Seguro que desea eliminar este registro?">
+                                        <x-danger-button wire:click="delete_hora({{ $hora->id }})" wire:confirm="Seguro que desea eliminar este registro?">
                                             <i class="fa-solid fa-trash"></i>
                                         </x-danger-button> 
                                     </x-td>                       
