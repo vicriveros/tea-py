@@ -47,11 +47,7 @@
 
                     <div class="mb-4.5">
                         <x-label for="paciente_id" value="{{ 'Paciente' }}" />
-                        <x-input wire:model="paciente_id" id="paciente_id" type="text" required  />
-
-                        <x-input-error for="paciente_id" class="mt-2">
-                            {{ 'Este campo es requerido.' }}
-                        </x-input-error>
+                        <livewire:components.autocomplete.paciente />
                     </div>
                     
                     <div class="mb-4.5">

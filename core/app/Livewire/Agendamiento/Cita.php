@@ -25,6 +25,14 @@ class Cita extends Component
     public $especialidades_ = '';
     public $medicos_ = '';
     public $message = '';
+
+    // Listens for the 'resultSelected' event from the paciente autocomplete component
+    protected $listeners = ['resultSelected'];
+
+    // This method gets triggered when the event is fired
+    public function resultSelected($paciente_seleccionado){
+        $this->paciente_id = $paciente_seleccionado; // Update the parent component with the selected value
+    }
     
     public function mount(Agendamientos $agendamientoid){
         $this->agendamiento = $agendamientoid;
