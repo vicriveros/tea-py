@@ -30,12 +30,4 @@
         </ul>
     @endif
 
-
-<style>
-    .autocomplete-result:hover, .autocomplete-result.highlighted {
-        background-color: #3490dc;
-        color: blue;
-    }
-</style>
-
 </div>
