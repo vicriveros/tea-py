@@ -52,36 +52,7 @@
     <script> 
         document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-        let prof=[
-                    {
-                        "id": "a",
-                        "title": "Auditorium A"
-                    },
-                    {
-                        "id": "b",
-                        "title": "Auditorium B",
-                        "eventColor": "green"
-                    },
-                    {
-                        "id": "c",
-                        "title": "Auditorium C",
-                        "eventColor": "orange"
-                    },
-                    {
-                        "id": "d",
-                        "title": "Auditorium D",
-                        "children": [
-                            {
-                                "id": "d1",
-                                "title": "Room D1"
-                            },
-                            {
-                                "id": "d2",
-                                "title": "Room D2"
-                            }
-                        ]
-                    }
-                ];
+        let prof=@json($medicos_espe);
         let cita=[
                     {
                         "resourceId": "a",
@@ -139,8 +110,8 @@
             resources: prof,
             events: cita,
             dateClick: function(info) {
-                let fecha = info.date.getUTCMonth() +'-'+ info.date.getUTCDate() +'-'+ info.date.getUTCFullYear();
-                let hora = info.date.getUTCHours() +':'+ info.date.getUTCMinutes() +':'+ info.date.getUTCSeconds();
+                let fecha = FullCalendar.formatDate(info.date, {month: '2-digit', year: 'numeric', day: '2-digit'});
+                let hora = FullCalendar.formatDate(info.date, {hour: '2-digit', minute: '2-digit',  timeZone: 'utc', locale: 'es'});
 
                 Livewire.dispatch('profSelected', { 
                     profesional: info.resource.id, 
