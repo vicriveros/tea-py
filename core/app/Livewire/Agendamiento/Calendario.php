@@ -2,15 +2,19 @@
 
 namespace App\Livewire\Agendamiento;
 
+use App\Models\Agendamientos;
 use App\Models\Especialidades;
 use App\Models\Medicos;
 use App\Models\MedicosEspecialidades;
+use App\Models\Paciente;
 use Livewire\Component;
 
 class Calendario extends Component
 {
     public $consultorioid = '';
     public $medicos_espe = [];
+    public $especialidades = [];
+    public $agenda = [];
 
     public function mount($consultorio){
         $this->consultorioid = $consultorio;
@@ -32,12 +36,37 @@ class Calendario extends Component
                 "children" => $profe
                 ];
             array_push($this->medicos_espe, $item);
+            array_push($this->especialidades, $esp->id);
         }
+
+        $hoy=date('Y-m-d');
+        $mesAntes = date('Y-m-d', strtotime($hoy . ' -1 month'));
+        $mesDespues = date('Y-m-d', strtotime($hoy . ' +1 month'));
+        $agendamiento = Agendamientos::where('consultorio_id', '=', $this->consultorioid)
+        ->whereBetween('fecha', [$mesAntes, $mesDespues])->get();
+
+        foreach($agendamiento as $cita){
+            $ini=$cita->fecha.'T'.$cita->hora_desde.':00+00:00';
+            $fin=$cita->fecha.'T'.$cita->hora_hasta.':00+00:00';
+            $item=[
+                "resourceId"=> $cita->medico_id,
+                "title"=> $this->getPacienteName($cita->paciente_id),
+                "start"=> $ini,
+                "end"=> $fin 
+                ];
+            array_push($this->agenda, $item);
+        }
+
     }
 
     public function getMedicoName($id){
         $med = Medicos::with('persona')->find($id);
         return $med->persona->nombre.' '.$med->persona->apellido; 
+    }
+
+    public function getPacienteName($id){
+        $pac = Paciente::with('persona')->find($id);
+        return $pac->persona->nombre.' '.$pac->persona->apellido; 
     }
 
     public function render()

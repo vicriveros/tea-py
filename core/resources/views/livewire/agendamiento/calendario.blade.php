@@ -1,10 +1,5 @@
 <div>
     <div id="modal_container" x-data>
-        <!-- Button to trigger modal -->
-        <button @click="$store.modal.toggle()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-            Open Modal
-        </button>
-
         <!-- Modal -->
         <div 
         x-show="$store.modal.on" 
@@ -48,49 +43,15 @@
     <meta charset='utf-8' />
     <!-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script> -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js'></script>
-
+    <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
+    <script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
+    
     <script> 
         document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-        let prof=@json($medicos_espe);
-        let cita=[
-                    {
-                        "resourceId": "a",
-                        "title": "event 1",
-                        "start": "2024-09-13T09:00:00+00:00",
-                        "end": "2024-09-13T09:45:00+00:00"
-                    },
-                    {
-                        "resourceId": "d1",
-                        "title": "event 3",
-                        "start": "2024-09-13T12:00:00+00:00",
-                        "end": "2024-09-13T12:45:00+00:00"
-                    },
-                    {
-                        "resourceId": "f",
-                        "title": "event 4",
-                        "start": "2024-09-13T07:30:00+00:00",
-                        "end": "2024-09-13T09:30:00+00:00"
-                    },
-                    {
-                        "resourceId": "d1",
-                        "title": "event 34",
-                        "start": "2024-09-13T12:45:00+00:00",
-                        "end": "2024-09-13T13:45:00+00:00"
-                    },
-                    {
-                        "resourceId": "b",
-                        "title": "event 5",
-                        "start": "2024-09-13T10:00:00+00:00",
-                        "end": "2024-09-13T15:00:00+00:00"
-                    },
-                    {
-                        "resourceId": "e",
-                        "title": "event 2",
-                        "start": "2024-09-13T09:00:00+00:00",
-                        "end": "2024-09-13T14:00:00+00:00"
-                    }
-                ]
+        let prof = @json($medicos_espe);
+        let especialidades = @json($especialidades);
+        let cita = @json($agenda);
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone: 'UTC',
@@ -101,9 +62,9 @@
             slotMinWidth: '50',
             aspectRatio: 1.8,
             headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
+                left: 'prev,next',
+                center: 'title',
+                right: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
             },
             editable: true,
             resourceAreaHeaderContent: 'Profesionales',
@@ -112,16 +73,20 @@
             dateClick: function(info) {
                 let fecha = FullCalendar.formatDate(info.date, {month: '2-digit', year: 'numeric', day: '2-digit'});
                 let hora = FullCalendar.formatDate(info.date, {hour: '2-digit', minute: '2-digit',  timeZone: 'utc', locale: 'es'});
-
-                Livewire.dispatch('profSelected', { 
-                    profesional: info.resource.id, 
-                    fecha: fecha, 
-                    hora: hora
-                });
-                Alpine.store('modal').toggle()
+                //Validar que solo se abra el modal si es un profesional
+                let validacion = Object.values(especialidades).includes(parseInt(info.resource.id));
+                if (!validacion){
+                    Livewire.dispatch('profSelected', { 
+                        profesional: info.resource.id, 
+                        fecha: fecha, 
+                        hora: hora
+                    });
+                    Alpine.store('modal').toggle()
+                }
             },
-            eventMouseEnter: function(info) {
-                console.log(info.event.start.getUTCHours() );                
+            eventClick: function(info) {
+                //console.log(info.event.start.getUTCHours() );                            
+                alert('Description: ' + info.event.extendedProps.description);
             }
         });
 
@@ -131,10 +96,7 @@
         document.addEventListener('alpine:init', () => {
             Alpine.store('modal', {
                 on: false,
-    
-                toggle() {
-                    this.on = ! this.on
-                }
+                toggle() { this.on = ! this.on }
             })
         })
     </script>

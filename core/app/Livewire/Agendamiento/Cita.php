@@ -3,11 +3,9 @@
 namespace App\Livewire\Agendamiento;
 
 use App\Models\Agendamientos;
-use App\Models\Consultorios;
 use App\Models\Especialidades;
 use App\Models\Medicos;
 use App\Models\MedicosEspecialidades;
-use App\Models\Persona;
 use Livewire\Component;
 
 class Cita extends Component
@@ -39,6 +37,7 @@ class Cita extends Component
     public function profSelected($profesional, $fecha, $hora){
         $this->fecha = $fecha;
         $this->hora_desde = $hora;
+        $this->hora_hasta = date('H:i', strtotime($hora . ' +45 minutes'));
         $this->medico_id = $profesional;
         $this->medico_nombres = $this->getMedicoName($this->medico_id);
         $this->especialidad_id = $this->getEspecialidadId($this->medico_id);
