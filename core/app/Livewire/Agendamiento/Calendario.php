@@ -39,6 +39,10 @@ class Calendario extends Component
             array_push($this->especialidades, $esp->id);
         }
 
+        $this->getCitas();
+    }
+
+    public function getCitas(){
         $hoy=date('Y-m-d');
         $mesAntes = date('Y-m-d', strtotime($hoy . ' -1 month'));
         $mesDespues = date('Y-m-d', strtotime($hoy . ' +1 month'));
@@ -49,14 +53,14 @@ class Calendario extends Component
             $ini=$cita->fecha.'T'.$cita->hora_desde.':00+00:00';
             $fin=$cita->fecha.'T'.$cita->hora_hasta.':00+00:00';
             $item=[
+                "id"=> $cita->id,
                 "resourceId"=> $cita->medico_id,
                 "title"=> $this->getPacienteName($cita->paciente_id),
                 "start"=> $ini,
-                "end"=> $fin 
+                "end"=> $fin
                 ];
             array_push($this->agenda, $item);
         }
-
     }
 
     public function getMedicoName($id){

@@ -6,6 +6,7 @@ use App\Models\Agendamientos;
 use App\Models\Especialidades;
 use App\Models\Medicos;
 use App\Models\MedicosEspecialidades;
+use App\Models\Paciente;
 use Livewire\Component;
 
 class Cita extends Component
@@ -22,12 +23,23 @@ class Cita extends Component
     public $estado = '';
     public $profesional = '';
     
-    public $consultorios_ = '';
     public $especialidad_nombre = '';
     public $medico_nombres = '';
     public $message = '';
 
     protected $listeners = ['resultSelected', 'profSelected'];
+
+    public function rules(){
+        return [
+            'consultorio_id' => ['required'],
+            'especialidad_id' => ['required'],
+            'medico_id' => ['required'],
+            'paciente_id' => ['required'],
+            'fecha' => ['required'],
+            'hora_desde' => ['required'],
+            'hora_hasta' => ['required'],
+        ];
+    }
 
     // This method gets triggered when the event is fired
     public function resultSelected($paciente_seleccionado){
@@ -50,19 +62,19 @@ class Cita extends Component
     }
 
     public function save_cita(){
-        $this->agendamiento->consultorio_id = $this->consultorio_id;
-        $this->agendamiento->especialidad_id = $this->especialidad_id;
-        $this->agendamiento->medico_id = $this->medico_id;
-        $this->agendamiento->paciente_id = $this->paciente_id;
-        $this->agendamiento->fecha = date('Y-m-d', strtotime($this->fecha));
-        $this->agendamiento->hora_desde = $this->hora_desde;
-        $this->agendamiento->hora_hasta = $this->hora_hasta;
-        $this->agendamiento->obs = $this->obs;
-
-        $this->agendamiento->save();
-
-        $this->reset();
+        $this->validate(); 
+        
+        $this->fecha = date('Y-m-d', strtotime($this->fecha));
+        $cita = Agendamientos::create(
+            $this->only(['consultorio_id', 'especialidad_id', 'medico_id', 'paciente_id', 'fecha', 'hora_desde', 'hora_hasta', 'obs'])
+        );
         $this->message = true;
+
+        $nombre= $this->getPacienteName($this->paciente_id);
+        $ini=$this->fecha.'T'.$this->hora_desde.':00+00:00';
+        $fin=$this->fecha.'T'.$this->hora_hasta.':00+00:00';
+        $this->dispatch('addCita', id:$cita->id, nombre:$nombre, ini:$ini, fin:$fin, resourceId:$this->medico_id);
+        $this->reset();
     }
 
     public function getEspecialidadId($id){
@@ -80,6 +92,10 @@ class Cita extends Component
         return $med->persona->nombre.' '.$med->persona->apellido; 
     }
     
+    public function getPacienteName($id){
+        $pac = Paciente::with('persona')->find($id);
+        return $pac->persona->nombre.' '.$pac->persona->apellido; 
+    }
 
     public function render()
     {
