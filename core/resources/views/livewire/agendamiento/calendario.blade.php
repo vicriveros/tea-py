@@ -1,4 +1,12 @@
 <div>
+    <x-page-title>
+        <x-slot name="title"> {{ 'Calendario' }} </x-slot>
+    </x-page-title>
+
+    <x-content-section>
+        <x-slot name="title">
+            {{ 'Agenda del Consultorio: '.$consultorioNombre }}
+        </x-slot>
     <div id="modal_container" x-data>
         <div 
         x-show="$store.modal.on" 
@@ -76,6 +84,7 @@
     <div id="calendar-container" wire:ignore>
             <div id="calendar"> </div>
     </div>
+    </x-content-section>
 
     @assets
     <meta charset='utf-8' />
@@ -119,7 +128,7 @@
                 let fecha = FullCalendar.formatDate(info.date, {month: '2-digit', year: 'numeric', day: '2-digit'});
                 let hora = FullCalendar.formatDate(info.date, {hour: '2-digit', minute: '2-digit',  timeZone: 'utc', locale: 'es'});
                 //Validar que solo se abra el modal si es un profesional
-                let validacion = Object.values(especialidades).includes(parseInt(info.resource.id));
+                let validacion = Object.values(especialidades).includes(info.resource.id);
                 if (!validacion){
                     Livewire.dispatch('profSelected', { 
                         profesional: info.resource.id, 

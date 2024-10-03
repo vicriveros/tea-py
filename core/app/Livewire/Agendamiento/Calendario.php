@@ -3,6 +3,7 @@
 namespace App\Livewire\Agendamiento;
 
 use App\Models\Agendamientos;
+use App\Models\Consultorios;
 use App\Models\Especialidades;
 use App\Models\Medicos;
 use App\Models\MedicosEspecialidades;
@@ -12,16 +13,20 @@ use Livewire\Component;
 class Calendario extends Component
 {
     public $consultorioid = '';
+    public $consultorioNombre = '';
     public $medicos_espe = [];
     public $especialidades = [];
     public $agenda = [];
 
     public function mount($consultorio){
         $this->consultorioid = $consultorio;
+        $this->consultorioNombre = $this->getConsultorioName($consultorio);
 
         $especialidades_ = Especialidades::all();
         foreach($especialidades_ as $esp){
-            $medicos = MedicosEspecialidades::where('especialidad_id', '=', $esp->id)->get();
+            $medicos = MedicosEspecialidades::join('medicos_horarios', 'medicos_especialidades.medico_id', '=', 'medicos_horarios.medico_id')
+            ->where('consultorio_id', '=', $this->consultorioid)
+            ->where('especialidad_id', '=', $esp->id)->get();
             $profe=[];
             foreach($medicos as $med){
                 $ch=[
@@ -31,14 +36,13 @@ class Calendario extends Component
                 array_push($profe, $ch);
             }
             $item=[ 
-                "id" => $esp->id,
+                "id" => 'e'.$esp->id,
                 "title"=> $esp->nombre,
                 "children" => $profe
                 ];
             array_push($this->medicos_espe, $item);
-            array_push($this->especialidades, $esp->id);
+            array_push($this->especialidades, 'e'.$esp->id);
         }
-
         $this->getCitas();
     }
 
@@ -66,6 +70,11 @@ class Calendario extends Component
     public function getMedicoName($id){
         $med = Medicos::with('persona')->find($id);
         return $med->persona->nombre.' '.$med->persona->apellido; 
+    }
+
+    public function getConsultorioName($id){
+        $cons = Consultorios::find($id);
+        return $cons->nombre; 
     }
 
     public function getPacienteName($id){

@@ -23,7 +23,6 @@
                     </x-th>
                     <x-th> Documento </x-th>
                     <x-th> Editar </x-th>
-                    <x-th> Agendar </x-th>
                 </tr>
             </thead>
 
@@ -39,14 +38,7 @@
                                     <i class="fa-solid fa-pen-to-square text-xl mx-2 text-primary"></i>
                                 </a>
                             @endcan
-                        </x-td> 
-                        <x-td>
-                            @can('agendar paciente')
-                                <a href="{{ route('agendamiento.cita', $persona->id) }}"> 
-                                    <i class="fa-regular fa-calendar-plus text-xl mx-2 text-primary"></i>
-                                </a>
-                            @endcan
-                        </x-td>                        
+                        </x-td>                       
                     </tr>
                 @endforeach
             </tbody>
