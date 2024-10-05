@@ -42,5 +42,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::get('agendamiento/calendario/{consultorio}', \App\Livewire\Agendamiento\Calendario::class)->name('agendamiento.calendario');
     Route::get('agendamiento/consultorios', \App\Livewire\Agendamiento\Consultorios::class)->name('agendamiento.consultorios');
+    Route::get('agendamiento/agenda', \App\Livewire\Agendamiento\Agenda::class)->name('agendamiento.agenda');
 
 });
