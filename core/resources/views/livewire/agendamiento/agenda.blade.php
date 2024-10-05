@@ -69,7 +69,7 @@
 
                     <button wire:click="limpiar" class="flex justify-center rounded bg-black p-3 font-medium text-gray hover:bg-opacity-90 place-self-end"><span><i class="fa-solid fa-broom"></i> Limpiar Busqueda</span></button>  
 
-                    <button wire:click="limpiar" class="flex justify-center rounded bg-meta-3 p-3 font-medium text-gray hover:bg-opacity-90 place-self-end"><span><i class="fa-solid fa-download"></i> Descargar</span></button> 
+                    <button wire:click="exportar" class="flex justify-center rounded bg-meta-3 p-3 font-medium text-gray hover:bg-opacity-90 place-self-end"><span><i class="fa-solid fa-download"></i> Descargar</span></button> 
                     
                 </div>    
 

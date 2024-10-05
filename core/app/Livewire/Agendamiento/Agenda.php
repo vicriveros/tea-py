@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Agendamiento;
 
+use App\Exports\AgendaExport;
 use App\Models\Agendamientos;
 use App\Models\Consultorios;
 use App\Models\Especialidades;
 use App\Models\Medicos;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -68,9 +70,15 @@ class Agenda extends Component
         
         return $query;
     }
+
     public function limpiar(){
-        $this->reset(['consultorio', 'especialidad', 'profesional', 'fecha_desde', 'fecha_hasta', 'citas']);
+        $this->reset(['consultorio', 'especialidad', 'profesional', 'fecha_desde', 'fecha_hasta', 'citas', 'forExport']);
     }
+
+    public function exportar(){
+        return (new AgendaExport($this->consultorio, $this->especialidad, $this->profesional, $this->fecha_desde, $this->fecha_hasta))->download('agenda.xlsx');
+    }
+
     public function render(){
         return view('livewire.agendamiento.agenda', [
             'agendamientos' => $this->citas,
