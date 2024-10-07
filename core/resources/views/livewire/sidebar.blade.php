@@ -55,7 +55,8 @@
           </li>
           @endcan
           <!-- Menu Item Profile -->
-
+           
+          @can('agendar paciente')
           <!-- Menu Item Agendamiento -->
           <li>
             <a
@@ -68,11 +69,9 @@
               <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 fill-current" 
               x-bind:class="{ 'rotate-180': (selected === 'Agendamiento') }"></i>
             </a>
-
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden"  x-bind:class="(selected === 'Agendamiento') ? 'block' :'hidden'">
               <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
-              @can('agendar paciente')
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white {{ Request::routeIs('agendamiento.consultorios') ? 'bg-graydark' : '' }}"
                   href="{{ route('agendamiento.consultorios') }}">
@@ -85,12 +84,12 @@
                         Agenda
                   </a>
                 </li>
-              @endcan
               </ul>
             </div>
             <!-- Dropdown Menu End -->
           </li>
           <!-- Menu Item Agendamiento -->
+          @endcan
 
           <!-- Menu Item Configuraciones -->
           @can('manejar configuraciones')

@@ -5,7 +5,7 @@
                 Bienvenido a la aplicación TEA PY.
             </h1>
             <p class="text-blueGray-500 text-lg text-center my-3 mb-4">
-                Estas son las citas confirmadas:
+                Estas son tus citas confirmadas:
             </p>
 
     <div x-data="{ activeTab: 1 }" class="max-w-3xl mx-auto">
