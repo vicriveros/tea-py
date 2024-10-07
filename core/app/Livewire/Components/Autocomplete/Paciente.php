@@ -11,6 +11,11 @@ class Paciente extends Component
     public $results = [];          // Array to hold the results
     public $highlightedIndex = 0;  // Track the currently highlighted index
 
+    protected $listeners = ['clearAutocomplete'];
+    public function clearAutocomplete(){
+        $this->reset(); 
+    }
+
     // This method is triggered each time the query changes
     public function updatedQuery()
     {

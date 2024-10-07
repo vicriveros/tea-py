@@ -19,6 +19,7 @@ class CreateMedicosTable extends Migration
             $table->smallInteger('estado')->nullable()->default(1);
             $table->smallInteger('activo')->nullable()->default(1);
             $table->foreignId('persona_id')->constrained('personas');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

@@ -57,9 +57,11 @@
                 </div>
 
                 <div class="mb-4.5">
-                    <x-label for="mail" value="{{ 'E-mail' }}" />
+                    <x-label for="mail" value="{{ 'E-mail (Usar el mismo e-mail del inicio de sesión)' }}" />
                     <x-input wire:model="mail" id="mail" type="text" required  placeholder="E-mail" />
                     <x-input-error for="mail" class="mt-2" />
+                    <x-message-error> {{ 'No se encuentra el e-mail en la lista de usuarios! Crear primero el Usuario.' }}  </x-message-error>
+
                 </div>
 
                 <div class="mb-4.5">

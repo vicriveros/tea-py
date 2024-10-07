@@ -47,6 +47,8 @@ class Cita extends Component
     }
 
     public function profSelected($profesional, $fecha, $hora){
+        $this->reset(['fecha', 'hora_desde', 'hora_hasta', 'medico_id', 'medico_nombres', 'especialidad_id', 'especialidad_nombre', 'obs']);
+
         $this->fecha = $fecha;
         $this->hora_desde = $hora;
         $this->hora_hasta = date('H:i', strtotime($hora . ' +45 minutes'));
@@ -62,19 +64,19 @@ class Cita extends Component
     }
 
     public function save_cita(){
-        $this->validate(); 
+        $this->validate();
         
         $this->fecha = date('Y-m-d', strtotime($this->fecha));
         $cita = Agendamientos::create(
             $this->only(['consultorio_id', 'especialidad_id', 'medico_id', 'paciente_id', 'fecha', 'hora_desde', 'hora_hasta', 'obs'])
         );
         $this->message = true;
+        $this->dispatch('clearAutocomplete');
 
         $nombre= $this->getPacienteName($this->paciente_id);
         $ini=$this->fecha.'T'.$this->hora_desde.':00+00:00';
         $fin=$this->fecha.'T'.$this->hora_hasta.':00+00:00';
         $this->dispatch('addCita', id:$cita->id, nombre:$nombre, ini:$ini, fin:$fin, resourceId:$this->medico_id);
-        $this->reset();
     }
 
     public function getEspecialidadId($id){

@@ -5,6 +5,7 @@ namespace App\Livewire\Medico;
 use Livewire\Component;
 use App\Models\Medicos;
 use App\Models\Persona;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
@@ -25,7 +26,8 @@ class Create extends Component
     public $registro ='';
 
     public $message = false;
-
+    public $message_error = false;
+    
     public function rules(){
         return [
             'nombre' => ['required'],
@@ -39,6 +41,15 @@ class Create extends Component
 
     public function save(){
         $this->validate(); 
+
+        // Buscar si la persona ya tiene usuario
+        $existing_usuario = User::where('email', $this->mail)->first();
+        if($existing_usuario){
+            $this->user_id = $existing_usuario->id;
+        }else{
+            $this->message_error = true;
+            return;
+        }
         
         // Buscar si la persona ya existe
         $existing_persona = Persona::where('documento', $this->documento)->first();
@@ -53,11 +64,9 @@ class Create extends Component
             );
             $this->persona_id = $new_persona->id;
         }
-
-        $this->user_id = Auth::id();
-
+        
         $new_medico= Medicos::create(
-            $this->only(['persona_id', 'registro'])
+            $this->only(['persona_id', 'registro', 'user_id'])
         );
 
         $this->message = true;
