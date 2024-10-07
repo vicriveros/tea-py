@@ -72,7 +72,7 @@ class Agenda extends Component
     }
 
     public function limpiar(){
-        $this->reset(['consultorio', 'especialidad', 'profesional', 'fecha_desde', 'fecha_hasta', 'citas', 'forExport']);
+        $this->reset(['consultorio', 'especialidad', 'profesional', 'fecha_desde', 'fecha_hasta', 'citas']);
     }
 
     public function exportar(){
