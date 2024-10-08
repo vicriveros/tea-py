@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/app/login'); //esta config es para el server de produccion. 
+// Para desarrollo en local se puede corregir la redireccion a '/login'. Volver a poner como estaba antes de hacer commit.
  
 Livewire::setScriptRoute(function ($handle) {
     return Route::get('/app/livewire/livewire.js', $handle);
