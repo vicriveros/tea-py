@@ -31,7 +31,7 @@ class Index extends Component
         return $this->search === ''
             ? $query
             : $query
-                ->where('nombre', 'like', '%'.$this->search.'%')
+                ->orWhere('nombre', 'like', '%'.$this->search.'%')
                 ->orWhere('apellido', 'like', '%'.$this->search.'%')
                 ->orWhere('documento', 'like', '%'.$this->search.'%');
     }
@@ -50,7 +50,8 @@ class Index extends Component
     public function render()
     {
         $query = DB::table('personas')
-            ->join('medicos', 'personas.id', '=', 'medicos.persona_id');
+            ->join('medicos', 'personas.id', '=', 'medicos.persona_id')
+            ->where('medicos.activo', '=', 1);
 
         $query = $this->applySearch($query);
 

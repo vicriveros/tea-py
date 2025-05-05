@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Usuario;
 
+use App\Models\Medicos;
 use App\Models\User;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -51,8 +52,15 @@ class Edit extends Component
     }
 
     public function delete(User $user){
+        $medico = Medicos::where('user_id', $user->id)->first();
+        if($medico){
+            $medico->activo = 0;
+            $medico->user_id = NULL;
+            $medico->save();
+        }
         $user->delete();
-        $this->redirect('/usuario/lista');
+        
+        $this->redirect('/app/usuario/lista');
     }
 
     public function render()

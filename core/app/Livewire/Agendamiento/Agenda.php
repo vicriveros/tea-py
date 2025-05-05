@@ -30,7 +30,7 @@ class Agenda extends Component
     public function mount(){
         $this->consultorios = Consultorios::all();
         $this->especialidades = Especialidades::all();
-        $this->profesionales = Medicos::with('persona')->get();
+        $this->profesionales = Medicos::with('persona')->where('medicos.activo', '=', 1)->get();
     }
 
     public function buscar(){

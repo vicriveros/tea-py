@@ -25,6 +25,8 @@ class Calendario extends Component
         $especialidades_ = Especialidades::all();
         foreach($especialidades_ as $esp){
             $medicos = MedicosEspecialidades::join('medicos_horarios', 'medicos_especialidades.medico_id', '=', 'medicos_horarios.medico_id')
+            ->join('medicos', 'medicos_especialidades.medico_id', '=', 'medicos.id')
+            ->where('medicos.activo', '=', 1)
             ->where('consultorio_id', '=', $this->consultorioid)
             ->where('especialidad_id', '=', $esp->id)->get();
             $profe=[];
